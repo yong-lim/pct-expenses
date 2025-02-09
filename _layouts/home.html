@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<main id="home">
+	<section>
+		{% for post in paginator.posts %}
+			<article class="single_article">
+				{% if post.external_url %}
+					<a href="{{ post.external_url }}"><h3>{{ post.title }}</h3></a>
+				{% else %}
+					<a href="{{ site.baseurl }}{{ post.url }}"><h3>{{ post.title }}</h3></a>
+				{% endif %}
+		
+				<p class="summary">
+					{% comment %}{{ post.excerpt }}{% endcomment %}
+					<!-- {{ post.content | markdownify | strip_html | truncatewords: 50 }} -->
+					{{ post.content | markdownify }}
+				</p>
+				
+			</article>
+			<hr class="article-divider">
+		{% endfor %}
+	</section>
+</main>

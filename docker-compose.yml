@@ -1,0 +1,12 @@
+# no version needed since 2020
+services:
+  jekyll:
+    image: bretfisher/jekyll-serve
+    container_name: expense
+    working_dir: /srv
+    volumes:
+      - .:/srv
+    ports:
+      - '5753:5753'
+      - '35753:35753'
+    command: bundle exec jekyll s --trace --force_polling -H 0.0.0.0 -P 5753 -l --livereload-port 35753
