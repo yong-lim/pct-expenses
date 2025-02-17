@@ -3,6 +3,10 @@ layout: default
 ---
 
 <main id="home">
+	<p class="summary">
+	   {{ content }}
+	</p>
+	<hr class="article-divider">
 	<section>
 		{% for post in paginator.posts %}
 			<article class="single_article">
