@@ -1,3 +1,5 @@
+@use "values" as *;
+
 @mixin links($color) {
 	text-align: center;
 	text-decoration: none;

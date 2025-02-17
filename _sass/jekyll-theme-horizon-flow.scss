@@ -1,17 +1,14 @@
-@import "functions/_mixins.scss";
-@import "functions/_values.scss";
+@forward "external/_normalize.scss";
+@forward "external/_highlighter_rougify_base16dark.scss";
+@forward "external/_comments.scss";
 
-@import "external/_normalize.scss";
-@import "external/_highlighter_rougify_base16dark.scss";
-@import "external/_comments.scss";
+@forward "layouts/_archive.scss";
+@forward "layouts/_categories.scss";
+@forward "layouts/_home.scss";
+@forward "layouts/_post.scss";
+@forward "layouts/_search.scss";
+@forward "layouts/_tags.scss";
 
-@import "layouts/_archive.scss";
-@import "layouts/_categories.scss";
-@import "layouts/_home.scss";
-@import "layouts/_post.scss";
-@import "layouts/_search.scss";
-@import "layouts/_tags.scss";
-
-@import "default/_base.scss";
-@import "default/_footer.scss";
-@import "default/_header.scss";
+@forward "default/_base.scss";
+@forward "default/_footer.scss";
+@forward "default/_header.scss";
