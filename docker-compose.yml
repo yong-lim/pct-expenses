@@ -2,7 +2,7 @@
 services:
   jekyll:
     image: bretfisher/jekyll-serve
-    container_name: expense
+    container_name: pct-expenses
     working_dir: /srv
     volumes:
       - .:/srv
