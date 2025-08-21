@@ -110,7 +110,7 @@ defaults:
     values:
       display_toc: true
 
-paginate: 3
+paginate: 20
 paginate_path: "/:num/"
 
 read_time_after: "min read"
