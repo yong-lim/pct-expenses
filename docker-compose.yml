@@ -6,5 +6,13 @@ services:
     working_dir: /srv-jekyll
     volumes:
       - .:/srv-jekyll
-    ports: ['5753:5753', '35753:35753']
-    command: bundle exec jekyll s --trace --force_polling -H 0.0.0.0 -P 5753 -l --livereload-port 35753
+    ports:
+      - '5753:5753'
+      - '35753:35753'
+    command: |
+      bundle exec jekyll serve
+      --trace --force_polling
+      --host 0.0.0.0
+      --port 5753
+      --livereload
+      --livereload-port 35753
