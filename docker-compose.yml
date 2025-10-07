@@ -3,10 +3,8 @@ services:
   jekyll:
     image: bretfisher/jekyll-serve
     container_name: pct-expenses
-    working_dir: /srv
+    working_dir: /srv-jekyll
     volumes:
-      - .:/srv
-    ports:
-      - '5753:5753'
-      - '35753:35753'
+      - .:/srv-jekyll
+    ports: ['5753:5753', '35753:35753']
     command: bundle exec jekyll s --trace --force_polling -H 0.0.0.0 -P 5753 -l --livereload-port 35753
