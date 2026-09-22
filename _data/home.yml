@@ -10,11 +10,11 @@ navbar_entries:
 
 project_entries:
   - title: Expense Entry
-    url: blog/overview-post
+    url: https://forms.gle/twXiDLnFBazQSXzt9
     desc: Fill out your expenses.
 
   - title: Expense Report
-    url: blog/overview-post
+    url: https://forms.gle/ozBxoxZNohMHNNEu5
     desc: Get an email of your recorded details expenses.
 
 old_project_entries:
