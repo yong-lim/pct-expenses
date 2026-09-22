@@ -1,25 +1,60 @@
 <!DOCTYPE html>
-<!--
-    Horizon Flow Theme 0.0.1
-    Copyright 2023 Markus Schiller - https://papierkorp.github.io/
-    Free for personal and commercial use under the MIT license
-    https://github.com/papierkorp/jekyll-theme-horizon-flow/blob/main/LICENSE.txt
--->
-<html>
-    <head lang="{{ site.locale | default: "en" }}">
-        {% seo %}
-        {% feed_meta %}
-        <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-        <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-        <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}{{ site.baseurl }}">
-    </head>
-
-    <body>
-        <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-        {% include header.html %}
-
+<html lang="{{ page.lang | default: "en" }}" class="html" data-theme="{{ site.theme_config.appearance | default: "auto" }}">
+        {%- include head.html -%}
+  <body>
+    {%- if site.theme_config.show_progress_bar and page.layout == "post" -%}
+      {% include progress_bar.html %}
+    {%- endif -%}
+    <main class="page-content" aria-label="Content">
+      <div class="w">
         {{ content }}
+        {% if site.theme_config.appearance_toggle %}
+          {% include toggle_theme_button.html %}
+        {% endif %}
+        <div class="credits">
+          {%- if site.theme_config.show_copyright == true -%}
+          &copy;&nbsp;{{ "now" | date: "%Y" }}&nbsp;{{site.author}}
+          &nbsp;
+          •
+          &nbsp;
+          {%- endif -%}
+          {%- if site.soopr -%}
+          Powered by <a href="https://www.soopr.co" target="_blank" rel="noopener noreferrer">Soopr</a>
+          &nbsp;
+          •
+          &nbsp;
+          {%- endif -%}
+          Theme&nbsp; <a href="https://github.com/abhinavs/moonwalk" target="_blank" rel="noopener noreferrer">Moonwalk</a>
+        </div>
+      </div>
+    </main>
 
-    </body>
+    {%- if page.layout == "post" -%}
+      {% include github_alerts.html %}
+    {%- endif -%}
 
+    {%- if site.theme_config.show_code_copy and page.layout == "post" -%}
+      {% include code_copy.html %}
+    {%- endif -%}
+
+    {%- if site.theme_config.show_footnote_tooltips and page.layout == "post" -%}
+      {% include footnotes.html %}
+    {%- endif -%}
+
+    {%- if site.theme_config.show_link_previews and page.layout == "post" -%}
+      {% include link_preview.html %}
+    {%- endif -%}
+
+    {%- if site.theme_config.show_back_to_top and page.layout == "post" -%}
+      {% include back_to_top.html %}
+    {%- endif -%}
+
+    {%- if site.soopr -%}
+      {%- if site.soopr.publish_token and jekyll.environment == "production" -%}
+        <script async defer data-soopr-token="{{site.soopr.publish_token}}" src="https://sdk.soopr.co/soopr.js"></script>
+      {%- else -%}
+        <script async defer src="https://sdk.soopr.co/soopr.js"></script>
+      {%- endif -%}
+    {%- endif -%}
+  </body>
 </html>

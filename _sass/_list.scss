@@ -1,0 +1,75 @@
+ul.horizontal-list {
+  display: flex;
+  margin-top: 0em;
+  padding-left: 16px;
+  list-style: none;
+  flex-wrap: wrap;
+  font-family: var(--font-sans);
+  gap: 0.8em;
+  justify-content: center;
+
+  li {
+    display: inline;
+  }
+
+  li a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  li:not(.card) {
+    margin-right: 1em;
+  }
+}
+
+.card {
+  position: relative; /* 1. Creates the boundaries for the stretched link */
+  padding: 0.7em;
+  border: 1px var(--text) solid;
+  width: 12em;
+  height: auto;
+  text-align: center;
+  font-size: 1em;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  // margin-bottom: 0.8em;
+  margin: 0 1.2em 1.2em 0;
+  border-radius: var(--radius-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1.5px var(--links) solid;
+  }
+
+  .header {
+    color: var(--links);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  .body {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  hr {
+    margin: 0.5em 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
+/* Responsive cards - one column layout on small screens */
+@media screen and (max-width: 600px) {
+  ul.horizontal-list li.card {
+    width: 100%;
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    a, .header {
+      font-size: 1em;
+    }
+  }
+}

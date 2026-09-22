@@ -1,638 +1,258 @@
-# [Horizon Flow Jekyll Theme](https://papierkorp.github.io/jekyll-theme-horizon-flow/)
+## moonwalk - a fast and minimalistic blog theme with clean dark mode
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-  - [Site URL](#site-url)
-  - [Site Base URL](#site-base-url)
-  - [Navigation](#navigation)
-  - [Footer](#footer)
-  - [Layouts](#layouts)
-  - [Footer Sidebar](#footer-sidebar)
-  - [Table of Contents](#table-of-contents)
-  - [paginate](#paginate)
-  - [Read Time](#read-time)
-  - [default plugins](#default-plugins)
-  - [Configurable Labels](#configurable-labels)
-  - [Comments](#comments)
-- [Front Matter](#front-matter)
-- [Layouts](#layouts-1)
-  - [`layout: default`](#layout-default)
-  - [`layout: post`](#layout-post)
-  - [`layout: archive`](#layout-archive)
-  - [`layout: home`](#layout-home)
-  - [`layout: categories`](#layout-categories)
-  - [`layout: search`](#layout-search)
-  - [`layout: tags`](#layout-tags)
-- [whislist](#whislist)
+<img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/moonwalk.png" />
 
+<h3 align="center">
+  <img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/logo.png" width="24"/>
+<a href="https://abhinavs.github.io/moonwalk/">TRY THE DEMO</a>
+</h3>
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](https://raw.githubusercontent.com/papierkorp/jekyll-theme-horizon-flow/main/LICENSE.txt)
-[![Jekyll](https://img.shields.io/badge/jekyll-%3E%3D%203.6-blue.svg?style=flat-square)](https://jekyllrb.com/)
-[![Gem Version](https://badge.fury.io/rb/jekyll-theme-horizon-flow.svg)](https://badge.fury.io/rb/jekyll-theme-horizon-flow)
-
-
-This is my first ever theme or anything like this so I got a whole damn LOT of Inspiration and Ideas of the [So Simple](https://github.com/mmistakes/so-simple-theme/tree/master) theme from [mmistakes](https://github.com/mmistakes). Also i almost completly copied his readme pls forgive me <3.
-
-This theme can offer:
-
-* Custom Navigation
-* Dynamically created Footer with Font Awesome Icons and Social Links
-* optional, flexible and customizable Footer-Sidebar (above the Footer)
-* include up to 5 elements in the Footer-sidebar, choosen between 4 premade ones and self created ones
-* SEO best practices via [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag)
-* Javascript free besides the optional search page and the optional comments
-* supports tags and categories
-* offers an archive
-* Carefully designed posts for almost all Markup elements
-* Activateable TOC and to the TOP Buttons for each post
-* Mobile Friendly
-* Highly Customizable
-* optional server-free [Comments](https://www.aleksandrhovhannisyan.com/blog/jekyll-comment-system-github-issues/#how-to-add-comments-to-a-jekyll-blog) with Github Issues (hosted on Github)
-
-![Horizon Flow Screenshots](https://papierkorp.github.io/jekyll-theme-horizon-flow/screenshot.png)
+## Features
+* Two hand-tuned themes, light and dark, inspired by GitHub's own light/dark palettes - with a theme switcher (respects `prefers-reduced-motion`)
+* Typeset in [IBM Plex Sans](https://www.ibm.com/plex/) (headings) and [IBM Plex Mono](https://www.ibm.com/plex/) (body & code)
+* [Agent-friendly out of the box](#agent-friendly-by-default) - per-page `.md` siblings, `/llms.txt`, and `/llms-full.txt`
+* Built-in client-side search over post titles, tags, and excerpts
+* Hover-preview cards on internal post links (opt-in)
+* Footnote tooltips - read footnotes inline without scrolling (opt-in)
+* Smooth page transitions via the View Transitions API in supporting browsers
+* Drop-cap on the first paragraph of a post (opt-in via `dropcap: true`)
+* Tag cloud with frequency-weighted sizing on the tag archive
+* Personality 404 with random-post link
+* Vertical list, horizontal list, card list
+* Landing page with navbar, footer, portfolio
+* Fast (very minimal CSS) - 100/100 on performance, accessibility, best practices and SEO, please see [Lighthouse Report](https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/lighthouse-report.png) for more details
+* Responsive and mobile friendly
+* SEO optimized with auto-generated sitemap
+* RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))
+* [GitHub Markdown Alerts](#github-markdown-alerts) (NOTE, TIP, IMPORTANT, WARNING, CAUTION)
+* Polished `<details>` collapsibles for asides and "long version" expansions
+* Tag archive page with clickable tags
+* Light and dark mode syntax highlighting with language label on each code block
+* Accessible - ARIA labels, keyboard friendly
+* Reading progress bar (opt-in)
+* Back-to-top button (opt-in)
+* Previous/next post navigation (opt-in)
+* Table of contents via `toc: true` front matter (opt-in)
+* Code block copy button with language label (opt-in)
+* Easy to extend
+* Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))
+* Auto-generated share images for social media (using [Soopr](https://www.soopr.co))
+* Share & like buttons (using [Soopr](https://www.soopr.co))
 
 
-## Installation
+#### Lighthouse
 
-1. Follow the [Jekyll Quickstart](https://jekyllrb.com/docs/)
+<img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/lighthouse-report.png" />
 
-2. Add this line to your Jekyll site's `Gemfile`:
+## Quick Installation
+1. [Fork this repository](https://github.com/abhinavs/moonwalk/fork).
+2. `cd moonwalk`
+3. `bin/bootstrap`
+4. [Optional] Sign up on Soopr, and add your `publish_token` in `_config.yml` file.
 
-```ruby
-gem "jekyll-theme-horizon-flow"
+If you are installing Moonwalk on Windows, please note that you might have to use Ruby 3.0.x instead of Ruby 3.1.x - you can see Windows specific installation instructions [here](https://github.com/abhinavs/moonwalk/blob/master/moonwalk_on_windows.md)
+
+## Starting Server
+`bin/start` - development server will start at http://127.0.0.1:4000
+
+## Deployment
+Moonwalk can be easily deployed on all the cloud providers (AWS etc.), and on static website hosting services like Netlify & Vercel. You can also use this button to do one click deploy
+<br />
+<br />
+[![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/abhinavs/moonwalk)
+
+If you want to use Moonwalk as a gem or use Github Pages, please see [this page](https://github.com/abhinavs/moonwalk/blob/master/github_pages.md)
+
+## Customizing
+
+You can edit `_config.yml` file to customize your blog. You can change things such as the name of the blog, the author, the appearance of the theme (light, dark or auto), how dates are formatted, etc. Customizable fields should be straightforward to understand. Still, `_config.yml` contains some comments to help you understand what each field does.
+
+For further customization (e.g. layout, CSS) see the [official Jekyll's documentation](https://jekyllrb.com/docs/themes/#overriding-theme-defaults) on customizing gem-based themes.
+
+### Customize the menu
+
+In order to add/edit/delete entries in the home page, you can copy the `home.yml` file inside `_data` folder. Through that file you can define the structure of the menu and add data for navbar, footer, portfolio or simply remove all of that and use simple blog layout. Take a look at the default configuration to get an idea of how it works and read on for a more comprehensive explanation.
+
+The `home.yml` file accepts the following fields:
+
+1. Vertical list
+  - `entries` define a new unordered list that will contain menu entries
+  - each entry is marked by a `-` at the beginning of the line
+  - each entry has the following attributes:
+    - `title`, which defines the text to render for that menu entry
+    - `url`, which can either be a URL or `false`. If it is `false`, the entry will be rendered as plain text; otherwise the entry will be rendered as a link pointing to the specified URL. Note that the URL can either be relative or absolute.
+    - `post_list`, which can be `true` or `false`. If it is true, the entry will have all posts in the site as subentries. This is used to render your post list.
+    - `entries`, yes, you can have entries inside entries. In this way you can create nested sublists!
+2. Card list - cards are used to showcase portfolio projects. Please see `project_entries` in `_data/home.yml` file
+  - each entry is marked by a `-` at the beginning of the line
+  - each entry has the following attributes:
+    - `title` defines the header of the card
+    - `desc` is the body of the card
+    - `url` is a relative or absolute link which this card can point to.
+    - `highlight` in case you want to highlight something, keep the text short though
+3. Horizontal list - moonwalk uses horizontal lists to create navbar and footer. Please see `navbar_entries` and `footer_entries` in `data/home.yml` file
+  - each entry is marked by a `-` at the beginning of the line
+  - each entry has the following attributes:
+    - `title` defines the header of the card
+    - `url` is a relative or absolute link which this card can point to.
+
+
+### Pro tips
+1. Moonwalk has 3 in-built layouts:
+  - post - for content
+  - blog - for listing blog posts
+  - home - for landing page
+  you can change your `index.md` file to use either home or blog layout.
+
+2. It is extremely easy to tweak the color scheme. Moonwalk ships with a light and dark theme inspired by GitHub's own palettes - override either mixin in your own SCSS to make it your own.
+  - light mode
+```css
+@mixin light-appearance {
+  html, body {
+      --bg: #ffffff;
+      --bg-secondary: #eaeef2;
+      --bg-subtle: #f6f8fa;
+      --headings: #1f2328;
+      --text: #1f2328;
+      --text-secondary: #59636e;
+      --links: #0969da;
+      --highlight: #fff8c5;
+      --code-text: #8250df;
+  }
+}
+```
+  - dark mode
+```css
+@mixin dark-appearance {
+  html, body  {
+      --headings: #f0f6fc;
+      --links: #4493f8;
+      --highlight: #e3b341;
+      --bg: #0d1117;
+      --bg-secondary: #21262d;
+      --bg-subtle: #161b22;
+      --text: #c9d1d9;
+      --text-secondary: #8b949e;
+      --code-text: #d2a8ff;
+  };
+}
 ```
 
-3. Add one of those lines to your Jekyll site's `_config.yml` file:
-
-```yaml
-theme: jekyll-theme-horizon-flow
-#remote_theme: papierkorp/jekyll-theme-horizon-flow #if you host on github pages
+3. Want different fonts? Moonwalk uses IBM Plex Sans / IBM Plex Mono via two CSS variables. Override them in your own SCSS:
+```css
+:root {
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+}
 ```
+Don't forget to update the `<link>` to Google Fonts in `_includes/head.html` to match.
 
-4. Then run [Bundler](http://bundler.io/) to install the theme gem and dependencies:
+### Optional features
 
-```terminal
-bundle install
-```
+Each of these is wired up in `_config.yml` under `theme_config`:
 
-5. Rename `index.md` to [`index.html`](index.html)
+- `show_footnote_tooltips: true` - when readers hover a kramdown footnote ref (`[^1]`), the footnote text appears in a small tooltip instead of forcing a scroll to the bottom.
+- `show_link_previews: true` - hover any internal post link to see a preview card with title, excerpt, and date. Powered by an auto-generated `/search.json` index.
 
-6. Follow the [Navigation setup](#Navigation) guide to make the best out of the theme.
+To add **client-side search** anywhere on your site, drop `{% raw %}{% include search.html %}{% endraw %}` into a layout or page. It searches over titles, tags, and excerpts using the same `/search.json`.
 
+To enable a **drop-cap** on a post's opening paragraph, add `dropcap: true` to the post's front matter.
 
+To use the **`<details>` collapsible** style, just write native HTML in your Markdown:
 
-## Configuration
-
-Configuration of site-wide elements (`navigation`, `footer`, `footer-sidebar`, `title`, `description`, `url` etc.) happens in your project's `_config.yml`.
-
-Here is a example `_config.yaml`:
-
-```yaml
-read_time_after: "min read"
-words_per_minute: 180
-
-url: "https://example.com"
-
-navigation:
-  - title: Home
-    url: /index.html
-  - title: Categories
-    url: /categories.html
-  - title: Tags
-    url: /tags.html
-  - title: Archive
-    url: /archive.html
-  - title: Search
-    url: /search.html
-
-# Footer Links
-footer_links:
-  - title: Feed
-    url: /feed.xml
-    icon: fa fa-rss
-  - title: GitHub
-    url: https://github.com/papierkorp
-    icon: fa fa-github
-  - title: Email
-    url: mailto:xxx@test.de
-    icon: fa fa-envelope
-  - title: Twitter
-    url: https://twitter.com
-    icon: fa fa-twitter
-  - title: Facebook
-    url: https://facebook.com
-    icon: fa fa-facebook
-  - title: Instagram
-    url: https://instagram.com
-    icon: fa fa-instagram
-  - title: Impressum
-    url: /impressum.html
-
-footer_sidebar:
-  arrangement:
-  - description
-  - tags
-  - categories
-  - extracontent2
-  - recentposts
-  description:
-    enabled: true
-  categories:
-    enabled: true
-    count: 100
-    columns: 1
-  tags:
-    enabled: true
-    count: 100
-    columns: 3
-  recentposts:
-    enabled: true
-    count: 10
-    columns: 2
-  custom_content:
-    enabled: true
-    data: >-
-      <h3>CUSTOM CONTENT</h3>
-      <p>not really content though...</p>
-  custom_content2:
-    enabled: false
-
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-paginate: 5
-paginate_path: "/:num/"
-
-include: [".md"]
-
-description: >- # this means to ignore newlines until "baseurl:"
-  <h3>
-    This is me
-  </h3>
-  <p>
-    Im a german guy from bavaria currently working as a devops engineer. I will try to keep the blog in english but may switch to german any time.
-  </p>
-  <p>
-    Here you will find a collection of blogs, tutorials, snippets or introductions mainly on (mostly modern) tech.
-    Also a few bits of gaming, fitness, finances and mabye (a big maybe) cooking.
-    I may find other topics of interest as well :D
-  </p>
-
-
-highlighter: rouge
-kramdown:
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
-
-lang: en
-
-defaults:
-  -
-    scope:
-      path: "_posts"
-    values:
-      toc: yes
-      display_toc: true
-
-permalink: /posts/:title #remove date from link
-```
-
-Take a look [here](https://jekyllrb.com/docs/configuration/) for more Information.
-
-As for the possible Configurations this theme offers take note of the following:
-
-* [Site URL](#site-url)
-* [Site Base URL](#site-base-url)
-* [Navigation](#navigation)
-* [Footer](#footer)
-* [Layouts](#layouts)
-* [Footer Sidebar](#footer-sidebar)
-* [Table of Contents](#table-of-contents)
-* [paginate](#paginate)
-* [Read Time](#read-time)
-* [default plugins](#default-plugins)
-* [Configurable Labels](#configurable-labels)
-* [Comments](#comments)
-
-### Site URL
-
-The base hostname and protocol for your site. If you're hosting with GitHub Pages this will be something like `url: "https://github.io.papierkorp"` or `url: "https://your-site.com"` if you have a custom domain name.
-
-GitHub Pages now [forces `https://` for new sites](https://help.github.com/articles/securing-your-github-pages-site-with-https/), so be mindful of that when setting your URL to avoid mixed-content warnings.
-
-**Note:** Jekyll overrides the value of `url` with `http://localhost:4000` when running `jekyll serve` locally in development. If you want to avoid this behavior set `JEKYLL_ENV=production` to [force the environment](http://jekyllrb.com/docs/configuration/#specifying-a-jekyll-environment-at-build-time) to production.
-
-### Site Base URL
-
-This option causes all kinds of confusion in the Jekyll community. If you're not hosting your site as a [GitHub Project Page](https://help.github.com/articles/user-organization-and-project-pages/) or in a subfolder (e.g., `/blog`), then don't mess with it.
-
-In the case of the **Horzion FLow** demo site it's hosted on GitHub at <https://papierkorp.github.io>. To correctly set this base path I'd use `url: "https://papierkorp.github.io"` and `baseurl: "/"`.
-
-For more information on how to properly use `site.url` and `site.baseurl` as intended by the Jekyll maintainers, check [Parker Moore's post on the subject](https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/).
-
-**Note:** When using `baseurl` remember to include it as part of your link and asset paths in your content. Values of `url:` and `baseurl: "/blog"` would make your local site visible at <http://localhost:4000/blog> and not <http://localhost:4000>. You can either prepend all your asset and internal link paths with `{{ site.baseurl }}` or use Jekyll's `relative_url`.
-
-To use the example values above the following image path of `{{ '/images/my-image.jpg' | relative_url }}` would output correctly as `http://localhost:4000/blog/images/my-image.jpg`.
-
-Without the `relative_url` filter that asset path would be missing `/blog` and you'd have a broken image on your page.
-
-
-### Navigation
-
-The Navigation is created in the [_config](#configuration) like this:
-
-```yaml
-Navigation:
-  - title: Home
-    url: /index.html
-  - title: Categories
-    url: /categories.html
-  - title: Tags
-    url: /tags.html
-  - title: Archive
-    url: /archive.html
-  - title: Search
-    url: /search.html
-  - title: Custom
-    url: /custom.html
-```
-
-You will have to create the specific `.html` or `.md` File in the target directory.
-
-If you want to use all of the premade layouts you will have to create this files in your root Directory:
-
-**index.html**
 ```html
----
-title: Home
-layout: home
----
+<details>
+  <summary>Long version</summary>
+  Hidden by default, expanded on click.
+</details>
 ```
 
-**categories.md**
-```markdown
----
-title: Categories
-layout: categories
----
-```
+<img src="https://raw.githubusercontent.com/abhinavs/moonwalk/master/_screenshots/twitter_card.png" />
 
-**tags.md**
-```markdown
----
-title: Tags
-layout: tags
----
-```
+### Agent-friendly by default
 
-**archive.md**
-```markdown
----
-title: Archive
-layout: archive
----
-```
+LLM crawlers and coding agents read your site too. Moonwalk ships with two small Jekyll plugins so they can fetch clean Markdown instead of parsing HTML:
 
-**search.md**
-```markdown
----
-title: Search
-layout: search
----
-```
+- **[jekyll-markdown-output](https://github.com/abhinavs/jekyll-markdown-output)** - emits a `.md` sibling for every post. A page rendered at `/foo` also exists as `/foo.md` with a small frontmatter block and the source Markdown. No layouts, no nav chrome, no theme toggles - just the content.
+- **[jekyll-llms-output](https://github.com/abhinavs/jekyll-llms-output)** - generates `/llms.txt` (a curated index) and `/llms-full.txt` (full content concatenated) following the [llmstxt.org](https://llmstxt.org) spec, so agents can discover and ingest your site in one fetch.
 
-**custom.html**
-```html
----
-title: Custom Content
-layout: post
----
-<h1>Custom Content</h1>
-<p>data...</p>
-```
-
-or
-
-**custom.md**
-```markdown
----
-title: Custom Content
-layout: post
----
-
-# Custom Content
-
-markdown data...
-```
-
-Besides the `index.html` (because of the pagination) it doesnt matter if you use `.html` or `.md` Files.
-For custom I will see if I can add another layout to use if neccessary, but I think `post` will do for everything.
-
-### Footer
-
-The Footer (Links) are created in the [_config](#configuration) like this:
-
-You can use all [Font Awesome](https://fontawesome.com/v4/icons/) Icons (but you dont have to). As you can see with the Impressum you can also link to locale files.
-
-You can add all kinds of social Media Links 
-
-
-```yaml
-footer_links:
-  - title: Feed
-    url: /feed.xml
-    icon: fa fa-rss
-  - title: GitHub
-    url: https://github.com/papierkorp
-    icon: fa fa-github
-  - title: Email
-    url: mailto:xxx@test.de
-    icon: fa fa-envelope
-  - title: Twitter
-    url: twitter.com
-    icon: fa fa-twitter
-  - title: Facebook
-    url: facebook.com
-    icon: fa fa-facebook
-  - title: Instagram
-    url: instagram.com
-    icon: fa fa-instagram
-  - title: Impressum
-    url: /impressum.html
-```
-
-### Layouts
-
-In here you can define the amount of columns used to display all tags/categories/years via the `_config`.
-Available values are `0-5`.
-
-```yaml
-layouts:
-  tags:
-    columns: 5  # default 4
-  categories:
-    columns: 3  # default 3
-  archive:
-    columns: 1  # default 2
-```
-
-
-### Footer Sidebar
-
-The footer Sidebar is the content directly above the footer.
-Per default there are 6 elements available:
-
-**description:** Uses the `description:` of `_config` to display all the data from there. For the best experience you should use an <h1></h1> on the top.  
-**categories:** Shows random categories according to the count.  
-**tags:** Shows random categories according to the count.  
-**recentposts:** Shows the last posts according to the count.  
-**custom_content:** As seen in the example below you can add custom content in two ways, the content can include `html` code.
-**custom_content2:** same as `custom_content`.
-
-You can set the Arrangement of the given elements like in the example below.
-
-**Note**, if you dont set the Arrangement **nothing** will be displayed! Also if you want the categories and tags links to work you need to follow the [Navigation Setup](#navigation)
-
-```yaml
-description: >- # this means to ignore newlines until
-  <h3>
-    This is me
-  </h3>
-  <p>
-    I just created my first theme .. hurray :D
-  </p>
-
-footer_sidebar:
-  enabled: true
-  auto: false # false = all elements will have the same width, true = each element takes what it needs
-  arrangement:  # you can rearrange the positions of the elements
-  - description  # will be the first one to be displayed
-  - tags  # second in the row ...
-  - custom_content
-  - recentposts  # will be displayed last
-  description:
-    enabled: true  # default: true
-    columns: 2  # default: 0 - if you include a list
-  categories:
-    enabled: true  # default: false
-    count: 100  # default: 100
-    columns: 5  # default: 0
-  tags:
-    enabled: true  # default: false
-    count: 100  # default: 100
-    columns: 5  # default: 0
-  recentposts:
-    enabled: true  # default: true
-    count: 10  # default: 5
-    columns: 2  # default: 0
-  custom_content:
-    enabled: true
-    data: >-
-      <h3>EXTRACONTENT</h3>
-      <p>not really content though...</p>
-    columns: 2  # default: 0 - if you include a list
-  custom_content2:
-    enabled: false
-    data: "<h3>mhm</h3>"
-    columns: 2  # default: 0 - if you include a list
-```
-
-The default of `0` stands for automatic alignment.
-
-
-### Table of Contents
-
-Take a look at the [Front Matter](#front-matter) on how to disable the TOC.
-
-I use the [Jekyll-Toc](https://github.com/allejo/jekyll-toc) from [allejo](https://github.com/allejo). So the TOC will be created on the build and is available in the html but will only be displayed after the TOC Hamburger Menu button is pressed.
-
-Basically I included the `_includes/toc.html` file and use it in the post layout.
-
-
-### paginate
-
-The default [Jekyll paginator](https://jekyllrb.com/docs/pagination/) is used. So you can use all configs described on their page.
-
-The default config of this theme uses:
-
-```yaml
-paginate: 5
-paginate_path: "/:num/"
-```
-
-### Read Time
-
-You can change the default Reading Time which is set to 180 words per min by changing `words_per_minute` in the `_config`:
-
-```yaml
-words_per_minute: 180
-```
-
-### default plugins
-
-In the default `_config` this plugins are used:
+Both are wired up in `_config.yml` with sensible defaults:
 
 ```yaml
 plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-sitemap
+  - jekyll-markdown-output
+  - jekyll-llms-output
+
+markdown_output:
+  collections: [posts]
+
+llms_output:
+  index:
+    collections: [posts]
+  full:
+    collections: [posts]
+    respect_markdown_output: true
 ```
 
+Set `enabled: false` on either block to turn it off. For curated `llms.txt` content, drop a `_data/llms.yml` file with `title`, `description`, and `sections` - the plugin will use it instead of auto-generating. See each plugin's README for full configuration.
 
-### Configurable Labels
+> [!NOTE]
+> GitHub Pages restricts plugins to a [whitelist](https://pages.github.com/versions/), and these two are not on it. If you host on GH Pages, build the site yourself in CI (Actions, Netlify, Cloudflare Pages, Vercel) or remove the plugins.
 
-You dont have to configure anything, but if you dislike some terms you have the option to change them like this:
+### GitHub Markdown Alerts
 
-Create a `_data` folder and in this folder a `configurable_lables.yaml` so in the end it looks like this: `./_data/configurable_lables.yaml`
+Moonwalk supports [GitHub-style Markdown Alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts). Use them in your posts like this:
 
-Now you can change the following Labels:
+```markdown
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
-| Name                      | Description                                                                                                           | Example + default value                                 | Example                                                                                         |
-|-------------------------- |---------------------------------------------------------------------------------------------------------------------- |-------------------------------------------------------- |-----------------------------------------------------------------------------------------------  |
-| read_time_before          | Is used 2 times, first in the home layout when all posts are displayed under the title. Secondly in the post header.  | read_time_before: ""                                    | ---<br>subtitle: "You're going to love this."<br>---                                            |
-| read_time_after           | Is used 2 times, first in the home layout when all posts are displayed under the title. Secondly in the post header.  | read_time_after: "min read"                             | ---<br>display_toc: false<br>---                                                                |
-| last_modified_at          | Is used in the post in the header.                                                                                    | last_modified_at: "Last Modified at:"                   | ---<br>last_modified_at: 10.09.2023<br>---                                                      |
-| search_title              | The title used in the `search` layout.                                                                                | search_title: "Search"                                  | ---<br>search_keywords: "words i didnt use in the tags"<br>---                                  |
-| archive_title             | The title used in the `archive` layout.                                                                               | archive_title: "Archive"                                | ---<br>toTop: false<br>---                                                                      |
-| archive_found             | The text displayed in the `archive` layout, under all years.                                                          | archive_found: "Found Posts per selected Year"          | ---<br>seoDescription: "Just a little summary to be better found in Search Engines =)"<br>---   |
-| archive_nothing_found     | The text displayed in the `archives` layout if no archives exist.                                                     | archive_nothing_found: "No archive years available."    | ---<br>noheader: true<br>---                                                                    |
-| tags_title                | The title used in the `tags` layout.                                                                                  | tags_title: "Tags"                                      |                                                                                                 |
-| tags_found                | The text displayed in the `tags` layout, under all years.                                                             | tags_found: "Found Posts per selected Tag"              |                                                                                                 |
-| tags_nothing_found        | The text displayed in the `tags` layout if no tags exist.                                                             | tags_nothing_found: "No tags available."                |                                                                                                 |
-| categories_title          | The title used in the `categories` layout.                                                                            | categories_title: "Categories"                          |                                                                                                 |
-| categories_found          | The text displayed in the `categories` layout, under all years.                                                       | categories_found: "Found Posts per selected Categorie"  |                                                                                                 |
-| categories_nothing_found  | The text displayed in the `categories` layout if no categories exist.                                                 | categories_nothing_found: "No categories available."    |                                                                                                 |
+> [!TIP]
+> Helpful advice for doing things better or more easily.
 
-**Example: (default Values)**
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
-```yaml
-read_time_before: ""
-read_time_after: "min read"
-last_modified_at: "Last Modified at:"
-search_title: "Search"
-archive_title: "Archive"
-archive_found: "Found Posts per selected Year"
-archive_nothing_found: "No archive years available."
-tags_title: "Tags"
-tags_found: "Found Posts per selected Tag"
-tags_nothing_found: "No tags available."
-categories_title: "Categories"
-categories_found: "Found Posts per selected Categorie"
-categories_nothing_found: "No categories available."
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 ```
 
+All five alert types are styled with color-coded left borders and icons, and work in both light and dark mode.
 
-### Comments
+## Contributing
 
-This theme enables the use of Comments per Github Issues API (taken from [here](https://www.aleksandrhovhannisyan.com/blog/jekyll-comment-system-github-issues/#how-to-add-comments-to-a-jekyll-blog)).
-To enable comments you will need the following Config:
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
 
-```yaml
-issues_repo: YourUsername/RepoName  # e.g.: issues_repo: papierkorp/blog
-```
+## Development
 
-In addition you will have to open up a Issue for each blog post manually and copy the ID of this Issue.
-Afterwards add this Front Matter to your Post:
+1. Run `bin/bootstrap` (or `make setup`) to install dependencies
+2. Run `bin/start` (or `make serve`) to start the dev server with live reload at `http://127.0.0.1:4000`
+3. Run `bin/build` (or `make build`) for a production build
 
-```yaml
-comments_id: 1
-```
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass`, `_data`, and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `moonwalk.gemspec` accordingly.
 
----
+## Acknowledgement
+This theme's original base is [no style please!](https://github.com/riggraz/no-style-please) theme created by  [Riccardo Graziosi](https://riggraz.dev/) - many thanks to him for creating a wonderful theme with nearly no css. 
 
-## Front Matter
+## License
 
-Take a look [here](https://jekyllrb.com/docs/front-matter/) on what Front Matter is and how to use it.
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-This theme offers the following Front-Matter:
+## Other Projects
+If you like Moonwalk, do check out my other projects
+*   [cookie](https://github.com/abhinavs/cookie) - a free landing website boilerplate using Jekyll and Tailwind CSS
+*   [scoop](https://github.com/abhinavs/scoop) - a Sinatra boilerplate project using Corneal, ActiveRecord, Capistrano, Puma & Nginx
+*   [soopr](https://www.soopr.co) - a tool that supports you in content marketing
+*   [apicagent](https://www.apicagent.com) - a FREE API that extracts device details from user-agent string
+*   [pincodr](https://pincodr.apiclabs.com) - a FREE API for Indian pincodes
+*   [humangous](https://www.humangous.co) - create public and private 'working with you' guides
+*   [blockr](https://www.abhinav.co/blockr) - a CLI tool to help you easily block and unblock websites
+*   [microrequests](https://www.abhinav.co/microrequests) - a Python library to help you consume microservice efficiently
 
-| layout | Name             | Description                                                                                                                 | Example                                                                                 |
-|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `post` | subtitle         | Adds a subtitle to the post (optional)                                                                                      | ---<br>subtitle: "You're going to love this." <br>---                                        |
-| `post` | display_toc      | true or false, shows the toc button on the bottom right (default: true)                                                     | ---<br>display_toc: false <br>---                                                            |
-| `post` | display_toc2     | true or false, shows another toc on the right side permanently (default: false)                                             | ---<br>display_toc2: true <br>---                                                            |
-| `post` | last_modified_at | Add extra meta-data when the post was last modified. It takes the date as you write it like a string.                       | ---<br>last_modified_at: 10.09.2023 <br>---                                                  |
-| `post` | search_keywords  | Add extra data to the [search.json](#layout-:-search) file                                                                                | ---<br>search_keywords: "words i didnt use in the tags" <br>---                              |
-| `post` | toTop            | true or false, shows the "To the Top" button on the bottom left (default: true)                                             | ---<br>toTop: false <br>---                                                                  |
-| `post` | seoDescription   | Add a specific SEO Description for Search Engines, uses an automated excerpt otherwise. Can be at most 160 Characters long. | ---<br>seoDescription: "Just a little summary to be better found in Search Engines =)" ---<br>|
-| `post` | noheader         | Disable the whole header and only show the Content. (default: false)                                                        | ---<br>noheader: true <br>---                                                                |
-| `post` | searchable       | The post wont be included in the search.                                                                                    | ---<br>searchable: false <br>---                                                             |
-| `post` | show_supplements | The supplements (date, readtime, tags...) wont be shown.                                                                    | ---<br>show_supplements: false<br><br>---                                                 |
-| `post` | comments_id      | If you want to enable comments (hosted on Github - needs the neccessary config set)                                         | ---<br>comments_id: 1<br><br>---                                                 |
-| `home` | noheader         | Disable the whole header and only show the Content. (default: false)                                                        | ---<br>noheader: true <br>---                                                                |
+You can read more about me on my [blog](https://www.abhinav.co/about/) or follow me on Twitter - [@abhinav](https://twitter.com/abhinav)
 
---- 
-
-## Layouts
-
-This theme provides the following layouts, which you can use by setting the `layout` [front matter](https://jekyllrb.com/docs/frontmatter/) on each page, like so:
-
-```yaml
----
-layout: name
----
-```
-
-### `layout: default`
-
-This layout handles all of the basic page scaffolding placing the page content between the masthead and footer elements. All other layouts inherit this one and provide additional styling and features inside of the `{{ content }}` block.
-
-**Note:** You should not use this.
-
-
-### `layout: post`
-
-This is the basic layout for new blog posts.
-See [Front Matter](#front-matter) for more details on what you can use.
-
-
-### `layout: archive`
-
-This layout displays all posts grouped by the year they were published. 
-There is no front matter for it.
-
-### `layout: home`
-
-This layout shows all of your blog posts, while the newest are in the front.
-
-See [Front Matter](#front-matter) for more details on what you can use.
-
-
-### `layout: categories`
-
-This layout displays all posts grouped category.
-There is no front matter for it.
-
-
-
-### `layout: search`
-
-This layout displays a search form and displays related pages based on the query.
-See [Front Matter](#front-matter) for more details on how you can enhance the search or disable the search for specific posts.
-
-It uses `_assets/search.json` as a base. `search.json` will be generated with the site build and will include the following data of each post:
-
-- title
-- summary (first 50 words of the post)
-- url
-- category
-- tags
-- keywords
-- date
-
-
-### `layout: tags`
-
-This layout displays all posts grouped by tag.
-There is no front matter for it.
-
-
-# whislist
-
-- more colors
+If you like my work, you can [buy me a coffee](https://buymeacoffee.com/abhinavs)
